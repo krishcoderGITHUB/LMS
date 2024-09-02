@@ -60,7 +60,7 @@ function verifyUser() {
 
  function showList(IDD){
 
-  fetch('https://script.google.com/macros/s/AKfycbyLTVCMvkv7pi-tfkrEMChCQjSrkHUlnpoo3EpMeF6KT4N0auQWN_-mnF9Nns-R-CAusw/exec?id='+IDD)
+  fetch('https://script.google.com/macros/s/AKfycbzwgiiZhoDa1vkn3upT8kr7s-zJURvrIlqSKR617B5O5uw_8JfJRokmRuz72BdsptHA7A/exec?id='+IDD)
   .then(response => response.json())
   .then(response => {
   const leavedata= response.data;
@@ -70,9 +70,9 @@ function verifyUser() {
     leavedata.forEach(item => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${item.id}</td>
             <td>${item.ai}</td>
             <td>${item.lp}</td>
+            <td>${item.lr}</td>
             <td>${item.s}</td>
         `;
         tableBody.appendChild(row);
@@ -83,13 +83,18 @@ function verifyUser() {
   .catch(err => console.error(err));
 }
  
+const fromDate = document.getElementById('multiple1');
+const toDate = document.getElementById('multiple2');
 
+fromDate.addEventListener('change', function() {
+    toDate.min = fromDate.value;
+});
 function OpenNewForm() {
   var add = document.getElementById("addbutton").textContent;
  
    if(add == '+ Apply for Leave'){
      document.getElementById("useridinput").value = document.getElementById('id').value ;
-     
+     document.getElementById("employeeid").value = document.getElementById('id').value ;
    document.getElementById("applicationlist").style.display = "none";
    document.getElementById("formpage").style.display = "flex";
    document.getElementById("addbutton").textContent = "Close X";
@@ -120,6 +125,7 @@ function OpenNewForm() {
       m1l.style.display = "none";
       m2l.style.display = "none";
       s1l.style.display = "block";
+      window.LT= "single";
 
     } else {
       s1.style.display = "none";
@@ -128,7 +134,41 @@ function OpenNewForm() {
       s1l.style.display = "none";
       m1l.style.display = "block";
       m2l.style.display = "block";
+      window.LT= "multiple";
+      
     }
 }
+
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzwgiiZhoDa1vkn3upT8kr7s-zJURvrIlqSKR617B5O5uw_8JfJRokmRuz72BdsptHA7A/exec';
+
+
+const form = document.getElementById('myForm');
+
+form.addEventListener('submit', e => {
+    e.preventDefault();
+if(window.LT=="single"){
+    document.getElementById("periodleave").value = String(document.getElementById('single1').value)  ; 
+}
+else{
+  document.getElementById("periodleave").value = String(document.getElementById('multiple1').value)+ " To " +String(document.getElementById('multiple2').value) ; 
+}
+
+  const now = new Date();
+  const day = String(now.getDate()).padStart(2, '0');
+  const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+  const year = String(now.getFullYear()).slice(-2); // Get last two digits of the year
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+
+  const formattedDateTime = `${day}${month}${year}${hours}${minutes}${seconds}`;
+  document.getElementById("appid").value = String(formattedDateTime) ; 
+
+    const formData = new FormData(form);
+
+    fetch(scriptURL, { method: 'POST', body: formData })
+        .then(response => alert('Success!'))
+        .catch(error => console.error('Error!', error.message));
+});
 
 

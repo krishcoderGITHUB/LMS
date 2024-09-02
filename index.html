@@ -34,9 +34,9 @@
                         <caption>YOUR PREVIOUS APPLICATIONS</caption>
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Application ID</th>
                                 <th>LEAVE PERIOD</th>
+                                <th>LEAVE Reason</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -49,24 +49,28 @@
 
                 <div id="formpage" ><div class="form-container">
                   <h2>LEAVE APPLICATION</h2>
-                  <form action="#" method="post">
-                    <input type="text" name="ID" value="ups.user" id="useridinput" disabled>
+                  <form id="myForm">
+                    <input type="text" value="id" id="useridinput" disabled>
                     <label for="leaveType">Select Leave Type:</label>
-                    <select id="leaveType" name="leaveType" onchange="changeinleavetype()" >
+                    <select id="leaveType" onchange="changeinleavetype()" >
                         <option value="single" selected>Single Day Leave</option>
                         <option value="multiple">Multiple Day Leave</option>
                     </select>
                     <label for="single1" id="s1l">Select Leave Date:</label>
-                    <input type="date" id="single1" name="LEAVE DATE">
+                    <input type="date" id="single1">
                     <label for="multiple1" id="m1l">FROM:</label>
-                    <input type="date" id="multiple1" name="FROM" >
+                    <input type="date" id="multiple1" >
                     <label for="multiple2" id="m2l">TO:</label>
 
-                    <input type="date" id="multiple2" name="TO" >
-
+                    <input type="date" id="multiple2" >
+                    <input type="text" name="idd" id="employeeid" style="display:none">
+                    <input type="text" name="ai" id="appid" style="display:none">
                     <label>Leave Reason: </label>
 
-                    <input type="text" name="LEAVE REASON" placeholder="Type here..." required>
+                    <input type="text" name="lp" id="periodleave" style="display:none">
+                    <input type="text" name="s" value="Pending" style="display:none">
+
+                    <input type="text" name="lr" placeholder="Type here..." required>
                     <input type="submit" value="Submit">
                   </form>
                   </div>
