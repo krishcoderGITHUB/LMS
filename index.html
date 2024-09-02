@@ -1,0 +1,81 @@
+<html>
+    <head>
+        <title>
+
+        </title>
+        <link rel="stylesheet" href="style.css">
+        <meta name="viewport" content="width=device-width">
+
+    </head>
+    <body>
+       <div id="header"> <div class="title"><center>UDAYA PUBLIC SCHOOL</center></div>
+        <div class="subtitle" ><center id="subtitle">
+            LOGIN PAGE
+        </center></div></div>
+        <div class="abc" id="body">
+            <form id="loginForm">
+                <label for="id">ID:</label>
+                <input type="text" id="id" name="id" required><br><br>
+                <label for="pass">Password:</label>
+                <input type="password" id="pass" name="pass" required><br><br>
+                <button type="button" onclick="verifyUser()">Login</button>
+            </form>
+            <p id="result"></p>
+                  
+        </div>
+        <div id="mainpage">
+            <div id="mainheader">
+                <div id="welcome">Welcome User</div>
+                <div id="newform" ><center><button id="addbutton" onclick="OpenNewForm()">+ Apply for Leave</button></center></div>
+            </div>
+            <div id="mainbody">
+                <div id="applicationlist">
+                    <table id="dataTable">
+                        <caption>YOUR PREVIOUS APPLICATIONS</caption>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Application ID</th>
+                                <th>LEAVE PERIOD</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div id="formpage" ><div class="form-container">
+                  <h2>LEAVE APPLICATION</h2>
+                  <form action="#" method="post">
+                    <input type="text" name="ID" value="ups.user" id="useridinput" disabled>
+                    <label for="leaveType">Select Leave Type:</label>
+                    <select id="leaveType" name="leaveType" onchange="changeinleavetype()" >
+                        <option value="single" selected>Single Day Leave</option>
+                        <option value="multiple">Multiple Day Leave</option>
+                    </select>
+                    <label for="single1" id="s1l">Select Leave Date:</label>
+                    <input type="date" id="single1" name="LEAVE DATE">
+                    <label for="multiple1" id="m1l">FROM:</label>
+                    <input type="date" id="multiple1" name="FROM" >
+                    <label for="multiple2" id="m2l">TO:</label>
+
+                    <input type="date" id="multiple2" name="TO" >
+
+                    <label>Leave Reason: </label>
+
+                    <input type="text" name="LEAVE REASON" placeholder="Type here..." required>
+                    <input type="submit" value="Submit">
+                  </form>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div id="snackbar"></div>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+    </script>
+    <script type="text/javascript" src="script.js"> </script>
+</html>
